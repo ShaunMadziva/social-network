@@ -1,5 +1,13 @@
-"use client"; 
+"use client";
 import { useState } from "react";
+
+type propType = {
+  profile: { user_name: string; bio: string };
+  posts: [{ id: number; content: string }] | any[];
+  handleUpdateProfile: Function;
+  handleEditPost: Function;
+  handleDeletePost: Function;
+};
 
 export default function ProfileClient({
   profile,
@@ -7,7 +15,7 @@ export default function ProfileClient({
   handleUpdateProfile,
   handleEditPost,
   handleDeletePost,
-}) {
+}: propType) {
   const [userName, setUserName] = useState(profile?.user_name || "");
   const [bio, setBio] = useState(profile?.bio || "");
 
@@ -58,11 +66,10 @@ export default function ProfileClient({
             key={post.id}
             className="mb-6 p-4 bg-gray-50 border border-gray-300 rounded-lg"
           >
-            <h4 className="text-lg font-medium mb-2">{post.user_name}</h4>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleEditPost(post.id, e.target.elements.content.value);
+                handleEditPost(post.id, post.content);
               }}
             >
               <textarea
