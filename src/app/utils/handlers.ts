@@ -15,7 +15,7 @@ export async function handleUpdateProfile(formData: FormData, profile) {
       await db.query(
         `INSERT INTO profiles (clerk_user_id, user_name, bio) VALUES ($1, $2, $3)`,
         [userId, user_name, bio]
-      ), console.log("****", userId, user_name, bio);
+      );
     } else {
       await db.query(
         `UPDATE profiles SET user_name=$1, bio=$2 WHERE clerk_user_id=$3`,
