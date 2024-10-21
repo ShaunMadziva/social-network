@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import { handleUpdateProfile } from "@/app/profile/page";
-import { handleDeletePost } from "@/app/profile/page";
-import { handleEditPost } from "@/app/profile/page";
+import { handleUpdateProfile } from "@/app/utils/handlers";
+import { handleDeletePost } from "@/app/utils/handlers";
+import { handleEditPost } from "@/app/utils/handlers";
 
 export default function ProfileClient({ profile, posts }) {
   const [userName, setUserName] = useState(profile?.user_name || "");

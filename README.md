@@ -2,14 +2,6 @@
 
 ## Still needs work...
 
-I need to get a better understanding of working with/between 'client' and 'server' in next.js
-
-```
-Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
-  [function query, ...]
-   ^^^^^^^^^^^^^^
-
-```
 
 ## Running the app locally
 
