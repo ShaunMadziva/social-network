@@ -1,21 +1,10 @@
 "use client";
 import { useState } from "react";
+import { handleUpdateProfile } from "@/app/profile/page";
+import { handleDeletePost } from "@/app/profile/page";
+import { handleEditPost } from "@/app/profile/page";
 
-// type propType = {
-//   profile: { user_name: string; bio: string };
-//   posts: [{ id: number; content: string }];
-//   handleUpdateProfile: Function;
-//   handleEditPost: Function;
-//   handleDeletePost: Function;
-// };
-
-export default function ProfileClient({
-  profile,
-  posts,
-  handleUpdateProfile,
-  handleEditPost,
-  handleDeletePost,
-}) {
+export default function ProfileClient({ profile, posts }) {
   const [userName, setUserName] = useState(profile?.user_name || "");
   const [bio, setBio] = useState(profile?.bio || "");
 
@@ -30,7 +19,7 @@ export default function ProfileClient({
           const formData = new FormData();
           formData.set("user_name", userName);
           formData.set("bio", bio);
-          handleUpdateProfile(formData);
+          handleUpdateProfile(formData, profile);
         }}
         className="space-y-4"
       >
@@ -69,7 +58,8 @@ export default function ProfileClient({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleEditPost(post.id, post.content);
+                const formData = new FormData(e.currentTarget);
+                handleEditPost(post.id, formData);
               }}
             >
               <textarea
