@@ -11,12 +11,11 @@ export default async function Profile() {
     [userId]
   );
   const profile = (await profileResult.rows[0]) || null;
-  console.log("*****", profile);
   const postsResult = await db.query(
     `SELECT * FROM posts WHERE clerk_user_id = $1`,
     [userId]
   );
-  const posts = await postsResult.rows; // the list of posts {} so we can map over it
+  const posts = postsResult.rows;
 
   return <ProfileClient profile={profile} posts={posts} />;
 }
